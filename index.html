@@ -9,17 +9,33 @@
     <h1>Hello World JS with KietHo1</h1>
   </body>
   <script>
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-      if (this.readyState == 4 && request.status == 200) {
-        //add request.status
-        // Typical action to be performed when the document is ready:
-        console.log(">>> check res: ", request);
-      } else {
-        console.log(">>> status: ", request.status); //add else
+    const callback = (error, data) => {
+      if (data) {
+        console.log("calling callback with data: ", data);
+      }
+      if (error) {
+        console.log("calling callback with error: ", error);
       }
     };
-    request.open("GET", "https://hufi.edu.vn/", true);
-    request.send();
+    function getMySchoolInfo(callback) {
+      var request = new XMLHttpRequest();
+      request.onreadystatechange = function () {
+        if (this.readyState == 4 && request.status == 200) {
+          // Typical action to be performed when the document is ready:
+          const data = request.responseText;
+          callback(undefined, data);
+        }
+        if (this.readyState === 4 && request.status !== 200) {
+          callback("Something wrongs", undefined);
+        }
+      };
+      request.open("GET", "https://hufi.edu.vn/", true);
+      request.send();
+    }
+    console.log(1);
+    console.log(2);
+    getMySchoolInfo(callback);
+    console.log(3);
+    console.log(4);
   </script>
 </html>
