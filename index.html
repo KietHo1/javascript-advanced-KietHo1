@@ -9,12 +9,14 @@
     <h1>Hello World JS with KietHo1</h1>
   </body>
   <script>
-    console.log(1);
-    console.log(2);
-    setTimeout(() => {
-      console.log(`run after 3s`);
-    }, 3000);
-    console.log(3);
-    console.log(4);
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+      if (this.readyState == 4) {
+        // Typical action to be performed when the document is ready:
+        console.log(">>> check res: ", request.responseText);
+      }
+    };
+    request.open("GET", "https://hufi.edu.vn/", true);
+    request.send();
   </script>
 </html>
