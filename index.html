@@ -9,6 +9,7 @@
     <h1>Hello World JS with KietHo1</h1>
   </body>
   <script>
+    $.support.cors = true;
     const callback = (error, data) => {
       if (data) {
         console.log("calling callback with data: ", data);
@@ -33,7 +34,7 @@
           }
           if (this.readyState === 4 && request.status !== 200) {
             /* callback("Something wrongs", undefined); */
-            reject("something wrong");
+            reject("something wrong wit id: " + id);
           }
         };
         request.open(
@@ -46,6 +47,22 @@
       });
     }
     getMySchoolInfo(1)
+      .then((data1) => {
+        console.log(">> get data: ", data1);
+        return getMySchoolInfo(2);
+      })
+      .then((data2) => {
+        console.log(">>> get data 2: ", data2);
+        return getMySchoolInfo(3);
+      })
+      .then((data3) => {
+        console.log(">>> get data 3: ", data3);
+      })
+      .catch((err) => {
+        console.log(">>> ", err);
+      });
+
+    /* getMySchoolInfo(1)
       .then((data) => {
         console.log(">> get data: ", data);
 
@@ -55,7 +72,7 @@
       })
       .catch((err) => {
         console.log(">>> ", err);
-      });
+      }); */
     /* getMySchoolInfo(1, (error, data) => {
       if (data) {
         console.log("calling callback with data: ", data);
