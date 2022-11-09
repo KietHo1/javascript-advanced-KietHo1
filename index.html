@@ -46,7 +46,15 @@
         request.send();
       });
     }
-    getMySchoolInfo(1)
+    //Add fetch
+    fetch(`https://jsonplaceholder.typicode.com/todos/1`)
+      .then((Response) => {
+        return (data1 = data.json());
+      })
+      .then((data) => {
+        console.log(">>> check fetch data: ", data);
+      });
+    /* getMySchoolInfo(1)
       .then((data1) => {
         console.log(">> get data 1: ", data1);
         return getMySchoolInfo(2);
@@ -60,7 +68,7 @@
       })
       .catch((err) => {
         console.log(">>> ", err);
-      });
+      }); */
 
     /* getMySchoolInfo(1)
       .then((data) => {
