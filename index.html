@@ -46,14 +46,26 @@
         request.send();
       });
     }
+    //Add async and await //'Replace await = async' => async
+    const getNewMySchoolInfo = async (id) => {
+      let response = await fetch(
+        `https://jsonplaceholder.typicode.com/todos/${id}`
+      );
+      let data = await response.json();
+      return data;
+    };
+
+    getNewMySchoolInfo(2).then((data) => {
+      console.log(">>> check get data: ", data);
+    });
     //Add fetch
-    fetch(`https://jsonplaceholder.typicode.com/todos/1`)
+    /* fetch(`https://jsonplaceholder.typicode.com/todos/1`)
       .then((Response) => {
         return (data1 = data.json());
       })
       .then((data) => {
         console.log(">>> check fetch data: ", data);
-      });
+      }); */
     /* getMySchoolInfo(1)
       .then((data1) => {
         console.log(">> get data 1: ", data1);
