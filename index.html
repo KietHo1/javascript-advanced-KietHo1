@@ -17,7 +17,7 @@
         console.log("calling callback with error: ", error);
       }
     };
-    function getMySchoolInfo(callback) {
+    function getMySchoolInfo(id, callback) {
       var request = new XMLHttpRequest();
       request.onreadystatechange = function () {
         if (this.readyState == 4 && request.status == 200) {
@@ -32,13 +32,36 @@
           callback("Something wrongs", undefined);
         }
       };
-      request.open("GET", "../data.json", true);
+      request.open(
+        "GET",
+        `https://jsonplaceholder.typicode.com/todos/${id}`,
+        true
+      );
       request.send();
     }
-    console.log(1);
-    console.log(2);
-    getMySchoolInfo(callback);
-    console.log(3);
-    console.log(4);
+    getMySchoolInfo(1, (error, data) => {
+      if (data) {
+        console.log("calling callback with data: ", data);
+      }
+      if (error) {
+        console.log("calling callback with error: ", error);
+        getMySchoolInfo(2, () => {
+          if (data) {
+            console.log("calling callback with data: ", data);
+            getMySchoolInfo(3, (error, data) => {
+              if (data) {
+                console.log("calling callback with data: ", data);
+              }
+              if (error) {
+                console.log("calling callback with error: ", error);
+              }
+            });
+          }
+          if (error) {
+            console.log("calling callback with error: ", error);
+          }
+        });
+      }
+    });
   </script>
 </html>
