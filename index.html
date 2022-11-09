@@ -48,7 +48,7 @@
     }
     getMySchoolInfo(1)
       .then((data1) => {
-        console.log(">> get data: ", data1);
+        console.log(">> get data 1: ", data1);
         return getMySchoolInfo(2);
       })
       .then((data2) => {
