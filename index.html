@@ -9,6 +9,27 @@
     <h1>Hello World JS with KietHo1</h1>
   </body>
   <script>
+    //...copy
+    let arr1 = [1, 2, 3, 4, 5];
+    let state = {
+      name: "KietHo1",
+      address: "HCM city",
+      channel: "LovelyHo",
+    };
+
+    console.log();
+
+    /* let name = state.name;
+    let address = state.address;
+    let channel = state.channel */
+
+    /* let{name, address, channel} = state; */
+
+    //const [name, setName] = useState('')
+    let arr = ["KietHo1", "LovelyHo"];
+    let [name, channel] = arr;
+    console.log(">>> check key: ", name, channel);
+
     $.support.cors = true;
     const callback = (error, data) => {
       if (data) {
